@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: admin-service
+  datasource:
+      url: jdbc:mysql://localhost:3306/mbs_admin?useSSL=false
+      username: root
+      password: Root@123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    register-with-eureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
