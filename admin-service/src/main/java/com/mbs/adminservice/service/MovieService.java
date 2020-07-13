@@ -11,13 +11,13 @@ import java.util.List;
 public interface MovieService {
     List<Movie> getAllMovies();
 
-    Movie getMovieById(Long movie_id);
+    Movie getMovieById(Long movieId);
 
     Movie addMovie(Movie newMovie);
 
-    Movie updateMovie(Movie updatedMovie, Long movie_id);
+    Movie updateMovie(Movie updatedMovie, Long movieId);
 
-    void deleteMovie(Long movie_id);
+    void deleteMovie(Long movieId);
 
 
 }

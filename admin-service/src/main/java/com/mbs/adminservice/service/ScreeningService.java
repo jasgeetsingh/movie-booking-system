@@ -2,23 +2,29 @@ package com.mbs.adminservice.service;
 
 
 
+
 import com.mbs.adminservice.model.Screening;
 import com.mbs.adminservice.model.Seat;
+import com.mbs.adminservice.model.dao.ScreeningDao;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface ScreeningService {
     List<Screening> getAllScreenings();
 
-    Screening getScreeningById(Long screening_id);
+    Screening getScreeningById(Long screeningId);
 
     Screening addScreening(Screening newScreening);
 
-    Screening updateScreening(Screening updatedScreening, Long screening_id);
+    Screening updateScreening(Screening updatedScreening, Long screeningId);
 
-    List<Seat> getSeatsByScreeningId(Long screening_id);
+    List<Seat> getSeatsByScreeningId(Long screeningId);
 
     List<Screening> getAllScreenings(LocalDateTime startDate, LocalDateTime endDate);
+
+    ScreeningDao getRemainingSeatsByScreenAndMovie(Long screenId, Long movieId);
+
+    void deleteScreeningList(Set<Screening> screeningList);
 }

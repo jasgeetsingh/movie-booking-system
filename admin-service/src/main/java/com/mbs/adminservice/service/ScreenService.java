@@ -3,15 +3,20 @@ package com.mbs.adminservice.service;
 import com.mbs.adminservice.model.Screen;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ScreenService {
     List<Screen> getAllScreens();
 
-    Screen getScreenById(Long screen_id);
+    Screen getScreenById(Long screenId);
 
     Screen addScreen(Screen newScreen);
 
-    Screen updateScreen(Screen updatedScreen, Long screen_id);
+    Screen updateScreen(Screen updatedScreen, Long screenId);
 
-    void deleteScreenById(Long screen_id);
+    Boolean deleteScreen(Screen screen);
+
+    Boolean hasNotAnyRunningShow(Screen screen);
+
+    Boolean deleteScreenList(Set<Screen> screenSet);
 }

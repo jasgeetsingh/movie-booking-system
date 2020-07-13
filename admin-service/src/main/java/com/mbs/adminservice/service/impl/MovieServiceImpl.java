@@ -29,8 +29,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getMovieById(Long movie_id) {
-        return movieRepository.findById(movie_id).orElseThrow(() -> new MovieNotFoundException(movie_id));
+    public Movie getMovieById(Long movieId) {
+        return movieRepository.findById(movieId).orElseThrow(() -> new MovieNotFoundException(movieId));
     }
 
     @Override
@@ -40,14 +40,14 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie updateMovie(Movie updatedMovie, Long movie_id) {
+    public Movie updateMovie(Movie updatedMovie, Long movieId) {
         return null;
     }
 
 
     @Override
-    public void deleteMovie(Long movie_id) {
-        movieRepository.deleteById(movie_id);
+    public void deleteMovie(Long movieId) {
+        movieRepository.deleteById(movieId);
     }
 
 }

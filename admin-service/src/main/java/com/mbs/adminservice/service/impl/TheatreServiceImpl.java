@@ -3,6 +3,7 @@ package com.mbs.adminservice.service.impl;
 
 import com.mbs.adminservice.model.Theatre;
 import com.mbs.adminservice.repository.TheatreRepository;
+import com.mbs.adminservice.service.ScreenService;
 import com.mbs.adminservice.service.TheatreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -17,13 +18,16 @@ public class TheatreServiceImpl implements TheatreService {
      @Autowired
      TheatreRepository theatreRepository;
 
+     @Autowired
+     ScreenService screenService;
+
     @Override
     public List<Theatre> getAllTheatres() {
         return theatreRepository.findAll();
     }
 
     @Override
-    public Theatre getTheatreById(Long theatre_id) {
+    public Theatre getTheatreById(Long theatreId) {
         return null;
     }
 
@@ -43,12 +47,14 @@ public class TheatreServiceImpl implements TheatreService {
     }
 
     @Override
-    public Theatre updateTheatre(Theatre updatedTheatre, Long theatre_id) {
+    public Theatre updateTheatre(Theatre updatedTheatre, Long theatreId) {
         return null;
     }
 
     @Override
-    public void deleteTheatreById(Long theatre_id) {
-
+    public void deleteTheatreById(Long theatreId) {
+          Theatre theatre = getTheatreById(theatreId) ;
+          Boolean canDeleteTheatre = screenService.deleteScreenList(theatre.getScreens());
+          if(canDeleteTheatre) {theatreRepository.delete(theatre); }
     }
 }
