@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
-ENV APP_FILE booking-service-0.0.1-SNAPSHOT.jar
+ENV APP_FILE gateway-service-0.0.1-SNAPSHOT.jar
 ENV APP_HOME /usr/apps
-EXPOSE 8090
+EXPOSE 8765
 COPY target/$APP_FILE $APP_HOME/
 WORKDIR $APP_HOME
 ENTRYPOINT ["sh", "-c"]

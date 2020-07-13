@@ -31,7 +31,7 @@ public class Screening extends BaseEntity {
     private LocalDateTime date;
 
     @Column(name = "is_full")
-    private Boolean isFull;
+    private Boolean isFull = false;
 
     @Column(name = "price")
     private Double price;

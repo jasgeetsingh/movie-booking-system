@@ -7,8 +7,9 @@ import com.mbs.adminservice.model.*;
 import com.mbs.adminservice.model.dao.BookingDao;
 import com.mbs.adminservice.model.dao.ScreeningDao;
 import com.mbs.adminservice.repository.BookingRepository;
-import com.mbs.adminservice.repository.UserRepository;
 import com.mbs.adminservice.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     UserService userService;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
@@ -43,11 +46,12 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking newBooking(BookingDao newBooking) throws HouseFullException {
+    public BookingDao newBooking(BookingDao newBooking) throws HouseFullException {
        ScreeningDao screeningDao = screeningService.getRemainingSeatsByScreenAndMovie(newBooking.getScreenId(), newBooking.getMovieId());
        Optional.ofNullable(screeningDao).orElseThrow(HouseFullException::new);
        Integer seatsRequired = newBooking.getSeatRequired();
        Integer seatAvailable = screeningDao.getRemainingSeats().size();
+
        if(seatsRequired > seatAvailable){
            throw new SeatsNotAvailableException(" Only Seat Left --> "+seatAvailable);
        }
@@ -67,8 +71,12 @@ public class BookingServiceImpl implements BookingService {
        });
        booking.getScreening().setBookedSeats(seatBookedSet);
        booking.setBookedSeats(seatBookedSet);
+       Set<Booking> bookings = new HashSet<>();
+        bookings.add(booking);
+       user.setBookings(bookings);
        bookingRepository.save(booking);
-        return null;
+       newBooking.setMessage("Your Booking is successfully Completed");
+        return newBooking;
     }
 
     @Override

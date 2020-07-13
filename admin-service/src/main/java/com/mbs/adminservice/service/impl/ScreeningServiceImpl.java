@@ -7,6 +7,7 @@ import com.mbs.adminservice.model.Movie;
 import com.mbs.adminservice.model.Screen;
 import com.mbs.adminservice.model.Screening;
 import com.mbs.adminservice.model.Seat;
+import com.mbs.adminservice.model.dao.MovieScreenDao;
 import com.mbs.adminservice.model.dao.ScreeningDao;
 import com.mbs.adminservice.repository.ScreeningRepository;
 import com.mbs.adminservice.service.MovieService;
@@ -56,9 +57,10 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public Screening addScreening(Screening newScreening) {
-        LOGGER.debug("movie from screen " + newScreening.getMovie());
-        return screeningRepository.save(newScreening);
+    public Screening addMovieScreening(MovieScreenDao movieScreenDao) {
+        Screening screening = getScreeningById(movieScreenDao.getScreeningId());
+        screening.setMovie(movieService.getMovieById(movieScreenDao.getMovieId()));
+        return screeningRepository.save(screening);
     }
 
     @Override

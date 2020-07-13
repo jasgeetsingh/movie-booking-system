@@ -5,6 +5,7 @@ package com.mbs.adminservice.service;
 
 import com.mbs.adminservice.model.Screening;
 import com.mbs.adminservice.model.Seat;
+import com.mbs.adminservice.model.dao.MovieScreenDao;
 import com.mbs.adminservice.model.dao.ScreeningDao;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public interface ScreeningService {
 
     Screening getScreeningById(Long screeningId);
 
-    Screening addScreening(Screening newScreening);
+    Screening addMovieScreening(MovieScreenDao movieScreenDao);
 
     Screening updateScreening(Screening updatedScreening, Long screeningId);
 

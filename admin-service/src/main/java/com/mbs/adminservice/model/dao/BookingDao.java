@@ -10,4 +10,5 @@ public class BookingDao {
     Long screenId; // which screen
     Long userId;   // who want to book the tickets
     Integer seatRequired; // how many seat wanted to book
+    String message;
 }

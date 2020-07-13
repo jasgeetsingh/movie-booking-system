@@ -13,7 +13,7 @@ public interface BookingService {
 
     Booking getBookingById(Long booking_id);
 
-    Booking newBooking(BookingDao newBooking) throws HouseFullException;
+    BookingDao newBooking(BookingDao newBooking) throws HouseFullException;
 
     Booking updateBooking(Booking updatedBooking, Long booking_id);
 

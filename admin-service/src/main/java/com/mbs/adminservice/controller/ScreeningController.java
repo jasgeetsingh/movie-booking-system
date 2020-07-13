@@ -4,6 +4,7 @@ package com.mbs.adminservice.controller;
 import com.mbs.adminservice.exception.HouseFullException;
 import com.mbs.adminservice.model.Screening;
 import com.mbs.adminservice.model.Seat;
+import com.mbs.adminservice.model.dao.MovieScreenDao;
 import com.mbs.adminservice.service.ScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,9 +52,9 @@ public class ScreeningController {
         return ResponseEntity.status(HttpStatus.OK).body(seats);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> getSeatsByScreeningId(@RequestBody Screening screening) {
+    @PostMapping("/movie/add")
+    public ResponseEntity<?> addMovieScreening(@RequestBody MovieScreenDao movieScreenDao) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(screeningService.addScreening(screening));
+        return ResponseEntity.status(HttpStatus.OK).body(screeningService.addMovieScreening(movieScreenDao));
     }
 }

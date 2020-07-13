@@ -2,9 +2,10 @@ spring:
   application:
     name: admin-service
   datasource:
-      url: jdbc:mysql://localhost:3306/mbs_admin?useSSL=false
-      username: root
-      password: Root@123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
   jpa:
     properties:
       hibernate:

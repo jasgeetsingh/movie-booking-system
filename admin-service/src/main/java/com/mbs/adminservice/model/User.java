@@ -13,16 +13,15 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private int id;
+public class User extends BaseEntity{
 
-    @Column(name = "user_name")
+    @Column(unique = true)
     private String userName;
 
-    @Column(name = "password")
+    private String firstName;
+
+    private String lastName;
+
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

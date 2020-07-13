@@ -1,6 +1,7 @@
 package com.mbs.adminservice.service.impl;
 
 
+import com.mbs.adminservice.exception.UserNotFoundException;
 import com.mbs.adminservice.model.User;
 import com.mbs.adminservice.repository.UserRepository;
 import com.mbs.adminservice.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Primary
@@ -22,13 +24,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Long user_id) {
-        return null;
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
     public User addUser(User newUser) {
-        return null;
+
+        return userRepository.save(newUser);
     }
 
     @Override
